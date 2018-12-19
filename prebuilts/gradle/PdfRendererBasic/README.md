@@ -28,8 +28,8 @@ around this by copying the file into the cache directory.
 Pre-requisites
 --------------
 
-- Android SDK 25
-- Android Build Tools v25.0.3
+- Android SDK 27
+- Android Build Tools v27.0.2
 - Android Support Repository
 
 Screenshots
