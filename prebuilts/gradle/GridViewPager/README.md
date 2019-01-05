@@ -7,8 +7,8 @@ Demonstrates how to implement a GridViewPager in your wearable app.
 Pre-requisites
 --------------
 
-- Android SDK 25
-- Android Build Tools v25.0.3
+- Android SDK 27
+- Android Build Tools v27.0.2
 - Android Support Repository
 
 Getting Started

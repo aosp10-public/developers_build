@@ -22,10 +22,16 @@ to recognize this as an Android project and start the template engine. -->
 buildscript {
     repositories {
         jcenter()
+        google()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+      <#-- TODO (jewalker): Remove once 3.2 is in production. -->
+      <#if sample.androidX?? && sample.androidX?has_content && sample.androidX == "true">
+        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
+      <#else>
+        classpath 'com.android.tools.build:gradle:3.1.3'
+      </#if>
     }
 }
 
