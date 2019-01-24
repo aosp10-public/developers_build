@@ -16,9 +16,10 @@
 -->
 repositories {
     jcenter()
+    google()
 }
 dependencies {
-    compile 'org.freemarker:freemarker:2.3.20'
+    implementation 'org.freemarker:freemarker:2.3.20'
 }
 
 sourceSets {
