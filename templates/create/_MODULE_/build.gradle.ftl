@@ -21,17 +21,12 @@ to recognize this as an Android project and start the template engine. -->
 
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
 
     dependencies {
-      <#-- TODO (jewalker): Remove once 3.2 is in production. -->
-      <#if sample.androidX?? && sample.androidX?has_content && sample.androidX == "true">
-        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
-      <#else>
-        classpath 'com.android.tools.build:gradle:3.1.3'
-      </#if>
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 }
 
@@ -42,7 +37,6 @@ android {
      <#-- Note that target SDK is hardcoded in this template. We expect all samples
           to always use the most current SDK as their target. -->
     compileSdkVersion ${compile_sdk}
-    buildToolsVersion ${build_tools_version}
 }
 
 task preflight (dependsOn: parent.preflight) {
