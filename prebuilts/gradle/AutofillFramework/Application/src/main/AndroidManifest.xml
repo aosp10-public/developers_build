@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
  Copyright 2017 The Android Open Source Project
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,11 +13,12 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.android.autofillframework"
-          android:versionCode="1"
-          android:versionName="1.0">
+    package="com.example.android.autofill.app"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -27,8 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <activity
-            android:name=".app.MainActivity"
-            android:label="AF Main"
+            android:name="com.example.android.autofill.app.MainActivity"
             android:taskAffinity=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,71 +36,40 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".app.LoginActivity"
-            android:label="AF StandardLogin"
-            android:taskAffinity=".LoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name="com.example.android.autofill.app.StandardSignInActivity"
+            android:taskAffinity=".StandardSignInActivity" />
         <activity
-            android:name=".app.VirtualLoginActivity"
-            android:label="AF VirtualLogin"
-            android:taskAffinity=".VirtualLoginActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".app.WelcomeActivity" />
+            android:name="com.example.android.autofill.app.StandardAutoCompleteSignInActivity"
+            android:taskAffinity=".StandardAutoCompleteSignInActivity" />
         <activity
-            android:name=".app.CreditCardActivity"
-            android:label="AF CreditCard"
-            android:taskAffinity=".CreditCardActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!--
-        Including launcher icon for Autofill Settings to convenience.
-        Not necessary for a real service.
-        -->
+            android:name="com.example.android.autofill.app.VirtualSignInActivity"
+            android:taskAffinity=".VirtualSignInActivity" />
+        <activity android:name="com.example.android.autofill.app.WelcomeActivity" />
         <activity
-            android:name=".service.settings.SettingsActivity"
-            android:exported="true"
-            android:label="@string/settings_name"
-            android:taskAffinity=".SettingsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <!--
-        Declare AutofillService implementation; only needed for a small number of apps that will
-        be implementing an AutofillService. Framework parses meta-data and sets the service's
-        Settings Activity based on what the meta-data resource points to.
-        -->
-        <service
-            android:name=".service.MyAutofillService"
-            android:permission="android.permission.BIND_AUTOFILL"
-            android:label="Sample Autofill Service">
-            <meta-data
-                android:name="android.autofill"
-                android:resource="@xml/autofill_service" />
-
-            <intent-filter>
-                <action android:name="android.service.autofill.AutofillService" />
-            </intent-filter>
-        </service>
-
-        <activity android:name=".service.AuthActivity" />
+            android:name="com.example.android.autofill.app.CreditCardActivity"
+            android:taskAffinity=".CreditCardActivity" />
+        <activity
+            android:name="com.example.android.autofill.app.CreditCardSpinnersActivity"
+            android:taskAffinity=".CreditCardSpinnersActivity" />
+        <activity
+            android:name="com.example.android.autofill.app.EmailComposeActivity"
+            android:taskAffinity=".EmailComposeActivity" />
+        <activity
+            android:name="com.example.android.autofill.app.CreditCardCompoundViewActivity"
+            android:taskAffinity=".CreditCardCompoundViewActivity" />
+        <activity
+            android:name="com.example.android.autofill.app.CreditCardDatePickerActivity"
+            android:taskAffinity=".CreditCardDatePickerActivity" />
+        <activity
+            android:name="com.example.android.autofill.app.CreditCardAntiPatternActivity"
+            android:taskAffinity=".CreditCardAntiPatternActivity" />
+        <activity
+            android:name="com.example.android.autofill.app.MultiplePartitionsActivity"
+            android:taskAffinity=".MultiplePartitionsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name="com.example.android.autofill.app.WebViewSignInActivity"
+            android:taskAffinity=".WebViewSignInActivity" />
     </application>
 
 </manifest>
