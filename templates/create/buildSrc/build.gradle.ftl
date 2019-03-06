@@ -15,8 +15,8 @@
         limitations under the License.
 -->
 repositories {
-    jcenter()
     google()
+    jcenter()
 }
 dependencies {
     implementation 'org.freemarker:freemarker:2.3.20'

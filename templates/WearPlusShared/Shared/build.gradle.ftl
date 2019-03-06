@@ -15,25 +15,20 @@
 -->
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
 
     dependencies {
-      <#-- TODO (jewalker): Remove once 3.2 is in production. -->
-      <#if sample.androidX?? && sample.androidX?has_content && sample.androidX == "true">
-        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
-      <#else>
-        classpath 'com.android.tools.build:gradle:3.1.3'
-      </#if>
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 }
 
 apply plugin: 'com.android.library'
 
 repositories {
-    jcenter()
     google()
+    jcenter()
 <#if sample.repository?has_content>
     <#list sample.repository as rep>
     ${rep}

@@ -15,25 +15,20 @@
 -->
 buildscript {
     repositories {
-        jcenter()
         google()
+        jcenter()
     }
 
     dependencies {
-      <#-- TODO (jewalker): Remove once 3.2 is in production. -->
-      <#if sample.androidX?? && sample.androidX?has_content && sample.androidX == "true">
-        classpath 'com.android.tools.build:gradle:3.2.0-beta01'
-      <#else>
-        classpath 'com.android.tools.build:gradle:3.1.3'
-      </#if>
+        classpath 'com.android.tools.build:gradle:3.3.0'
     }
 }
 
 apply plugin: 'com.android.application'
 
 repositories {
-    jcenter()
     google()
+    jcenter()
 <#if sample.repository?has_content>
 <#list sample.repository as rep>
     ${rep}
@@ -48,18 +43,18 @@ dependencies {
 
     <#if !sample.auto_add_support_lib?has_content || sample.auto_add_support_lib == "true">
       <#if sample.minSdk?matches(r'^\d+$') && sample.minSdk?number < 7>
-        implementation "com.android.support:support-v4:27.1.1"
-        implementation "com.android.support:appcompat-v7:27.1.1"
+        implementation "com.android.support:support-v4:28.0.0"
+        implementation "com.android.support:appcompat-v7:28.0.0"
       <#elseif sample.minSdk?matches(r'^\d+$') && sample.minSdk?number < 13>
-        implementation "com.android.support:support-v4:27.1.1"
-        implementation "com.android.support:gridlayout-v7:27.1.1"
-        implementation "com.android.support:cardview-v7:27.1.1"
-        implementation "com.android.support:appcompat-v7:27.1.1"
+        implementation "com.android.support:support-v4:28.0.0"
+        implementation "com.android.support:gridlayout-v7:28.0.0"
+        implementation "com.android.support:cardview-v7:28.0.0"
+        implementation "com.android.support:appcompat-v7:28.0.0"
       <#else>
-        implementation "com.android.support:support-v4:27.1.1"
-        implementation "com.android.support:support-v13:27.1.1"
-        implementation "com.android.support:cardview-v7:27.1.1"
-        implementation "com.android.support:appcompat-v7:27.1.1"
+        implementation "com.android.support:support-v4:28.0.0"
+        implementation "com.android.support:support-v13:28.0.0"
+        implementation "com.android.support:cardview-v7:28.0.0"
+        implementation "com.android.support:appcompat-v7:28.0.0"
       </#if>
     </#if>
 
@@ -73,6 +68,10 @@ dependencies {
 
 <#list sample.dependency_external as dep>
     implementation files(${dep})
+</#list>
+
+<#list sample.annotationProcessor as ap>
+    annotationProcessor "${ap}"
 </#list>
 
 <#if sample.wearable.has_handheld_app?has_content && sample.wearable.has_handheld_app?lower_case == "true">
@@ -105,8 +104,6 @@ android {
     compileSdkVersion ${compile_sdk}
   </#if>
 
-    buildToolsVersion ${build_tools_version}
-
     defaultConfig {
         minSdkVersion ${min_sdk}
       <#if sample.targetSdkVersion?? && sample.targetSdkVersion?has_content>
@@ -114,6 +111,9 @@ android {
       <#else>
         targetSdkVersion ${compile_sdk}
       </#if>
+<#if sample.defaultConfig?has_content>
+        ${sample.defaultConfig}
+<#else>
     }
 
     compileOptions {
@@ -133,11 +133,6 @@ android {
         androidTest.setRoot('tests')
         androidTest.java.srcDirs = ['tests/src']
 
-<#if sample.defaultConfig?has_content>
-        defaultConfig {
-        ${sample.defaultConfig}
-        }
-<#else>
 </#if>
     }
 
