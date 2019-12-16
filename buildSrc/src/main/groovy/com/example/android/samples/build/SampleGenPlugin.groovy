@@ -89,8 +89,17 @@ class SampleGenPlugin implements Plugin {
             project.refresh.dependsOn(project.processCommon)
 
             // People get nervous when they see a task with no actions, so...
-            project.create << {println "Project creation finished."}
-            project.refresh << {println "Project refresh finished."}
+            project.create {
+                doLast {
+                    println "Project creation finished."
+                }
+            }
+
+            project.refresh {
+                doLast {
+                    println "Project refresh finished."
+                }
+            }
 
         })
     }
